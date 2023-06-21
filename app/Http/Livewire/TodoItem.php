@@ -16,5 +16,12 @@ class TodoItem extends Component
         ]);
     }
 
+    public function deleteTodo()
+    {
+        Todo::where('id', $this->todo->id)->delete();
+        // Refresh the todos list
+        $this->emit('refreshTodos');
+    }
+
 
 }

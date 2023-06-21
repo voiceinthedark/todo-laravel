@@ -7,6 +7,11 @@ use Livewire\Component;
 
 class Todos extends Component
 {
+
+    protected $listeners = [
+        'refreshTodos' => 'render',
+    ];
+
     public $title = '';
     // public $todos;
 
@@ -32,6 +37,8 @@ class Todos extends Component
         ]);
         $this->title = '';
     }
+
+
 
 
 }
