@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TodoPolicy
 {
@@ -21,7 +22,7 @@ class TodoPolicy
      */
     public function view(User $user, Todo $todo): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +30,7 @@ class TodoPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return Auth::id() === $user->id;
     }
 
     /**
@@ -37,7 +38,7 @@ class TodoPolicy
      */
     public function update(User $user, Todo $todo): bool
     {
-        //
+        return $user->id === $todo->user_id;
     }
 
     /**
@@ -45,7 +46,7 @@ class TodoPolicy
      */
     public function delete(User $user, Todo $todo): bool
     {
-        //
+        return $user->id === $todo->user_id;
     }
 
     /**

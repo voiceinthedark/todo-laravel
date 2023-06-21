@@ -7,6 +7,13 @@ use Livewire\Component;
 
 class TodoItem extends Component
 {
+
+    // Set the rules for the validation
+    protected array $rules = [
+        'todo.title' => 'required'
+    ];
+
+
     public $todo;
 
     public function render()
@@ -21,6 +28,24 @@ class TodoItem extends Component
         Todo::where('id', $this->todo->id)->delete();
         // Refresh the todos list
         $this->emit('refreshTodos');
+    }
+
+    public function completedTodo($id) {
+        $todo = Todo::find($id);
+        $todo->completed = !$todo->completed;
+        $todo->save();
+
+        $this->emit('refreshTodos');
+    }
+
+    public function updateTodo($id) {
+
+        // validate the form
+        $this->validate($this->rules);
+
+        $todo = Todo::find($id);
+        $todo->title = $this->todo->title;
+        $todo->save();
     }
 
 
