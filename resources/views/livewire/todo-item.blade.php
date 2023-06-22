@@ -21,7 +21,7 @@
         >
 
         <input type="text"
-            wire:model="todo.title"
+            wire:model.debounce.500ms="todo.title"
             wire:keydown.enter="updateTodo({{ $todo->id }})"
             placeholder="{{ $todo->title }}"
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-green-400 focus:ring-green-300 focus:outline-dashed focus:ring focus:ring-opacity-40">
