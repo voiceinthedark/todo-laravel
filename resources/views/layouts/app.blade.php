@@ -17,6 +17,11 @@
             text-decoration: line-through;
         }
     </style>
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+    {{-- <script src='build/assets/pusher_echo.js' type='module'></script> --}}
+
+
 
     <script>
         function noticesHandler() {
@@ -43,6 +48,8 @@
             }
         }
     </script>
+
+
 
 
     <!-- Scripts -->
@@ -75,6 +82,7 @@
             alert(`Todo ${todoId} created!`);
         });
     </script>
+
 </body>
 
 </html>

@@ -6,7 +6,7 @@ use App\Events\TodoCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendTodoCreatedNotification
+class SendTodoCreatedNotification implements ShouldQueue
 {
     use InteractsWithQueue;
 
@@ -28,6 +28,6 @@ class SendTodoCreatedNotification
      */
     public function handle(TodoCreated $event): void
     {
-        dd($event);
+        // dd($event);
     }
 }

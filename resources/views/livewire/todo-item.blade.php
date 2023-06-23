@@ -1,4 +1,5 @@
 <li x-data="{ editingTodo: false }">
+
     <div class="flex justify-between py-2 px-4 bg-gray-900 font-semibold">
         <div>
             <input type="checkbox" name="completed" id="completed" wire:change="completedTodo({{ $todo->id }})" {{ $todo->completed ? 'checked' : ''}}>
@@ -12,6 +13,13 @@
                 <x-icon-trash />
             </button>
         </div>
+        {{-- <script type='module'>
+            console.log('inside module');
+            Echo.private('todo.' + {{ $todo->id }})
+                .listen('todoCreated', (e) =>{
+                    console.log(e);
+            });
+    </script> --}}
     </div>
     <!-- Show this div content only when editing by pressing the pencil button -->
     <div x-show="editingTodo"
@@ -28,3 +36,4 @@
 
     </div>
 </li>
+

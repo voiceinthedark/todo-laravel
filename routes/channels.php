@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('todo.{todoId}', function (User $user, int $todoId) {
+    return (int) $user->id === Todo::find($todoId)->user_id;
+    // return true;
 });

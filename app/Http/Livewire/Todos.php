@@ -39,8 +39,9 @@ class Todos extends Component
         ]);
         $this->title = '';
 
-        // Send a todo created event
+        // Doesn't seem to working from a livewire component
         Event::dispatch(new TodoCreated($todo), ['todo' => $todo]);
+        // Send a todo created event
         $this->emit('todoCreated', $todo->id);
     }
 

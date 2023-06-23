@@ -8,10 +8,11 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TodoCreated
+class TodoCreated implements ShouldQueue, ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -31,7 +32,10 @@ class TodoCreated
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('todo-created'),
+            new PrivateChannel('todo.' . $this->todo->id),
         ];
+    }
+    public function broadcastAs(){
+        return 'todoCreated';
     }
 }
