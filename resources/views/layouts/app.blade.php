@@ -44,6 +44,7 @@
         }
     </script>
 
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -68,6 +69,12 @@
         </main>
     </div>
     @livewireScripts
+
+    <script>
+        Livewire.on('todoCreated', (todoId) => {
+            alert(`Todo ${todoId} created!`);
+        });
+    </script>
 </body>
 
 </html>

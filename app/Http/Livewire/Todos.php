@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\TodoCreated;
 use App\Models\Todo;
+use Illuminate\Support\Facades\Event;
 use Livewire\Component;
 
 class Todos extends Component
@@ -30,12 +32,16 @@ class Todos extends Component
         $this->validate([
             'title' => 'required'
         ]);
-        Todo::create([
+        $todo = Todo::create([
             'title' => $this->title,
             'user_id' => auth()->user()->id,
             'completed' => false,
         ]);
         $this->title = '';
+
+        // Send a todo created event
+        Event::dispatch(new TodoCreated($todo), ['todo' => $todo]);
+        $this->emit('todoCreated', $todo->id);
     }
 
 
